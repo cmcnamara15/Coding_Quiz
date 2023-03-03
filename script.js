@@ -4,9 +4,9 @@ var highscores;
 var question;
 var playerName;
 var playerScore;
-var starttime = 75;
 
 var questionIndex = 0;
+var secondsLeft = 75;
 
 var questions =[{
     question: "question1", 
@@ -33,9 +33,10 @@ var headerEl =$('#header');
 headerEl.css({'background': 'lightblue'})
 var titleEl =$('<h1>');
 titleEl.text('Welcome To The Code Quiz!'); 
-titleEl.addClass('p-5');
+titleEl.addClass('p-2');
 titleEl.css({'text-align': 'center', 'border': 'dotted'});
 headerEl.append(titleEl);
+
  
 
 var containerEl =$('#container')
@@ -43,6 +44,7 @@ var startbtnEl = $('#startGamebtn')
 startbtnEl.text("Click To Start The Game!")
 startbtnEl.css({'font-size': '35px', 'color': 'blue', 'background': 'lightblue'})
 containerEl.append(startbtnEl);
+
 
 var questionsEl =$('#questions');
 var questionEl =$('#questionTitle');
@@ -77,35 +79,39 @@ function showQuestion() {
 }
 
 
-startbtnEl.on("click", function(){
-   containerEl.hide();
-   showQuestion();
-   setTimeout(function(){
-    alert('Time is up!');
-   }, 75000);
-   });
+ var timerEl = document.querySelector("#timer");
+ console.log(timerEl)
 
-var timerEl=$('time')
-
-
-function setTime() {
+ function setTime() {
     var timerInterval = setInterval(function() {
-      starttime--;
-      timeEl.textContent = starttime + "seconds left.";
-  
-      if(starttime === 0) {
-        // Stops execution of action at set interval
-        clearInterval(timerInterval);
-        // Calls function to create and append image
-        sendMessage();
-      }
-  
+        secondsLeft--;
+        timerEl.textContent = secondsLeft + "seconds remaining.";
+        console.log(secondsLeft);
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+        }
     }, 1000);
-  }
-  
+ }
+
+var answersEl =$("#answerButtons");
+answersEl.hide();
+
+ startbtnEl.on("click", function(){
+    containerEl.hide();
+    showQuestion();
+    setTime();
+    console.log(secondsLeft);
+    setTimeout(function(){
+     alert('Time is up!');
+    }, 75000); 
+    });
 
 
- 
+
+
+
+
+
 // Create html elements for the timer and the start button
 // Variables to keep track of
 // Current time (stopped or live)
@@ -122,3 +128,14 @@ function setTime() {
 // Starts the timer (however that works)
 // Draws a question on the page
 
+
+// var timerEl=$('#timer')
+// $(document).ready(function(){
+// function setTime() 
+//     var timerInterval = setInterval(function() {
+//         $(timerEl).text(secondsLeft--);
+//         if (secondsLeft == 0) {
+//             clearInterval(timerInterval);
+//         }
+//     },1000);
+// })
