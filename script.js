@@ -1,31 +1,12 @@
 // variables 
 var timer 
-var highscores;
-var question;
-var playerName;
-var playerScore;
+var highscores
+var question
+var playerName
 
+var playerScore = 0;
 var questionIndex = 0;
 var secondsLeft = 75;
-
-var questions =[{
-    question: "question1", 
-    choices: ["choice1", "choice2", "choice3", "choice4"],
-    rightAnswer: "choice2",
-}, {
-    question: "question2",
-    choices: ["choice1", "choice2", "choice3", "choice4"],
-    rightAnswer: "choice4",
-}, {
-    question: "question3",
-    choices: ["choice1", "choice2", "choice3", "choice4"],
-    rightAnswer: "choice3",
-}, {
-    question: "question4",
-    choices: ["choice1", "choice2", "choice3", "choice4"],
-    rightAnswer: "choice1",
-}];
-
 
 var bodyEl =$('#body')
 bodyEl.css({'background': 'pink', 'margin': '50px'})
@@ -37,14 +18,32 @@ titleEl.addClass('p-2');
 titleEl.css({'text-align': 'center', 'border': 'dotted'});
 headerEl.append(titleEl);
 
- 
-
 var containerEl =$('#container')
 var startbtnEl = $('#startGamebtn')
 startbtnEl.text("Click To Start The Game!")
 startbtnEl.css({'font-size': '35px', 'color': 'blue', 'background': 'lightblue'})
 containerEl.append(startbtnEl);
+containerEl.css({'text-align': 'center'});
 
+
+
+var questions =[{
+    question: "Question1", 
+    choices: ["choice1", "choice2", "choice3", "choice4"],
+    rightAnswer: "choice2",
+}, {
+    question: "Question2",
+    choices: ["choice1", "choice2", "choice3", "choice4"],
+    rightAnswer: "choice4",
+}, {
+    question: "Question3",
+    choices: ["choice1", "choice2", "choice3", "choice4"],
+    rightAnswer: "choice3",
+}, {
+    question: "Question4",
+    choices: ["choice1", "choice2", "choice3", "choice4"],
+    rightAnswer: "choice1",
+}];
 
 var questionsEl =$('#questions');
 var questionEl =$('#questionTitle');
@@ -59,6 +58,7 @@ function showQuestion() {
     choice2El.text(questions[questionIndex].choices[1]);
     choice3El.text(questions[questionIndex].choices[2]);
     choice4El.text(questions[questionIndex].choices[3]);
+}
     choice1El.on("click", function(){
         questionIndex++;
         showQuestion();
@@ -75,29 +75,45 @@ function showQuestion() {
         questionIndex;
         showQuestion();
     })
+
+    var highScoresEl =$('#highScores');
+highScoresEl.css({'align': 'right'});
+highScoresEl.css({'font-size': '15px', 'color': 'blue', 'background': 'lightblue', })
     
-}
+questionsEl.hide();
+var timerEl = document.querySelector("#timer");
+//  console.log(timerEl)
+// ^ concole.logged to make sure timer was working
 
-
- var timerEl = document.querySelector("#timer");
- console.log(timerEl)
-
- function setTime() {
+ 
+function setTime() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
-        timerEl.textContent = secondsLeft + "seconds remaining.";
+        timerEl.textContent = secondsLeft + " seconds remaining!";
         console.log(secondsLeft);
+        //  WRITE CODE TO DECREMENT TIME IF USER CHOOSES WRONG QUESTION
         if(secondsLeft === 0) {
             clearInterval(timerInterval);
         }
     }, 1000);
  }
 
-var answersEl =$("#answerButtons");
-answersEl.hide();
+ var choicesEl=$('#choices');
+// var answersEl =$("#answerButtons");
+// answersEl.hide();
 
  startbtnEl.on("click", function(){
     containerEl.hide();
+    questionsEl.show();
+    questionEl.css({'text-align': 'center'});
+    choicesEl.css({'text-align': 'center-left','font-size': '15px', 
+    'color': 'blue', 'background': 'lightblue', 'padding': '20px', 
+    'border': 'dotted'
+});
+    choice1El.css({'margin': '5px'});
+    choice2El.css({'margin': '5px'});
+    choice3El.css({'margin': '5px'});
+    choice4El.css({'margin': '5px'}),
     showQuestion();
     setTime();
     console.log(secondsLeft);
