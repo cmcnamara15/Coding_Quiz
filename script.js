@@ -29,21 +29,21 @@ containerEl.css({'text-align': 'center'});
 
 
 var questions =[{
-    question: "Question1", 
-    choices: ["choice1", "choice2", "choice3", "choice4"],
-    rightAnswer: "choice2",
+    question: "What data type returns a value of true/false?", 
+    choices: ["string", "boolean", "number", "object"],
+    rightAnswer: 1,
 }, {
-    question: "Question2",
-    choices: ["choice1", "choice2", "choice3", "choice4"],
-    rightAnswer: "choice4",
+    question: "A  variable name cannot start with a?",
+    choices: ["dollar sign", "capital letter", "number", "dash"],
+    rightAnswer: 2,
 }, {
-    question: "Question3",
-    choices: ["choice1", "choice2", "choice3", "choice4"],
-    rightAnswer: "choice3",
+    question: "Whenever a method requires some information to work, the data is given inside the parentheses is called",
+    choices: ["objects", "method operators", "data types", "parameters"],
+    rightAnswer: 3,
 }, {
-    question: "Question4",
-    choices: ["choice1", "choice2", "choice3", "choice4"],
-    rightAnswer: "choice1",
+    question: "Which of the following is not included in the family of data types?",
+    choices: ["variable", "numeric", "boolean", "string"],
+    rightAnswer: 0,
 }];
 
 var questionsEl =$('#questions');
@@ -53,27 +53,28 @@ var choice2El =$('#choice2');
 var choice3El =$('#choice3');
 var choice4El =$('#choice4');
 
-function checkQuestion() {
-    userChoice = questions[questionIndex].choices[choicesIndex];
-    console.log(userChoice)
-    console.log(questions[questionIndex].rightAnswer)
-    if(userChoice = questions[questionIndex].rightAnswer){
-    console.log('right')
-    playerScore = playerScore + 25;
+var correctEl =$('#correct')
+
+function checkQuestion(userChoice) {
+
+
+    if(userChoice === questions[questionIndex].rightAnswer){
+        console.log('right')
+        playerScore = playerScore + 25;
+        correctEl.text('right')
+        playerScore += 25
     
     }else{
-    console.log('wrong')
-    playerScore = playerScore + 0;
+        console.log('wrong')
+        playerScore = playerScore + 0;
+        correctEl.text('wrong')
+        secondsLeft -= 15
     }
     console.log(playerScore)
-    
-
+   
 };
 
     
-
-
-
 function showQuestion() {
     questionEl.text(questions[questionIndex].question);
     choice1El.text(questions[questionIndex].choices[0]);
@@ -82,23 +83,26 @@ function showQuestion() {
     choice4El.text(questions[questionIndex].choices[3]);
 }
     choice1El.on("click", function(){
-        checkQuestion();
+        checkQuestion(0);
         questionIndex++;
         showQuestion();
+
     });
     choice2El.on("click", function(){
-        checkQuestion();
+        checkQuestion(1);
         questionIndex++;
         showQuestion();
     });
     choice3El.on("click", function(){
-        checkQuestion();
+        checkQuestion(2);
         questionIndex++;
         showQuestion();
     });
     choice4El.on("click", function(){
-        questionIndex;
+        checkQuestion(3);
+        questionIndex++;
         showQuestion();
+
     })
 
 var finalScoreEl =$('#finalScore')
