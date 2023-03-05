@@ -1,11 +1,12 @@
 // variables 
 var timer 
-var highscores
+var highScores
 var question
 var playerName
 
 var playerScore = 0;
 var questionIndex = 0;
+var choicesIndex = 0;
 var secondsLeft = 75;
 
 var bodyEl =$('#body')
@@ -52,6 +53,27 @@ var choice2El =$('#choice2');
 var choice3El =$('#choice3');
 var choice4El =$('#choice4');
 
+function checkQuestion() {
+    userChoice = questions[questionIndex].choices[choicesIndex];
+    console.log(userChoice)
+    console.log(questions[questionIndex].rightAnswer)
+    if(userChoice = questions[questionIndex].rightAnswer){
+    console.log('right')
+    playerScore = playerScore + 25;
+    
+    }else{
+    console.log('wrong')
+    playerScore = playerScore + 0;
+    }
+    console.log(playerScore)
+    
+
+};
+
+    
+
+
+
 function showQuestion() {
     questionEl.text(questions[questionIndex].question);
     choice1El.text(questions[questionIndex].choices[0]);
@@ -60,14 +82,17 @@ function showQuestion() {
     choice4El.text(questions[questionIndex].choices[3]);
 }
     choice1El.on("click", function(){
+        checkQuestion();
         questionIndex++;
         showQuestion();
     });
     choice2El.on("click", function(){
+        checkQuestion();
         questionIndex++;
         showQuestion();
     });
     choice3El.on("click", function(){
+        checkQuestion();
         questionIndex++;
         showQuestion();
     });
@@ -76,10 +101,20 @@ function showQuestion() {
         showQuestion();
     })
 
-    var highScoresEl =$('#highScores');
+var finalScoreEl =$('#finalScore')
+var enterInitialsEl =$('#enterInitials')
+var submitScoreEl =$('#submitScore')
+
+submitScoreEl.css({'color': 'blue', 'background': 'lightblue'})
+
+var highScoresEl =$('#highScores');
 highScoresEl.css({'align': 'right'});
 highScoresEl.css({'font-size': '15px', 'color': 'blue', 'background': 'lightblue', })
-    
+highScoresEl.on("click", function(){
+    containerEl.hide()
+    questionsEl.hide()
+})
+
 questionsEl.hide();
 var timerEl = document.querySelector("#timer");
 //  console.log(timerEl)
@@ -98,7 +133,8 @@ function setTime() {
     }, 1000);
  }
 
- var choicesEl=$('#choices');
+ 
+var choicesEl=$('#choices');
 // var answersEl =$("#answerButtons");
 // answersEl.hide();
 
@@ -116,15 +152,13 @@ function setTime() {
     choice4El.css({'margin': '5px'}),
     showQuestion();
     setTime();
-    console.log(secondsLeft);
-    setTimeout(function(){
-     alert('Time is up!');
-    }, 75000); 
+    // console.log(secondsLeft);
+    // setTimeout(function(){
+    //  alert('Time is up!');
+    // }, 75000); 
     });
 
-
-
-
+ 
 
 
 
