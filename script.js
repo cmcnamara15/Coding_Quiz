@@ -8,7 +8,7 @@ var playerScore = 0;
 var questionIndex = 0;
 var choicesIndex = 0;
 var secondsLeft = 75;
-var tickerId = null;
+var timerId = null;
 
 var bodyEl =$('#body')
 bodyEl.css({'background': 'pink', 'margin': '50px'})
@@ -23,7 +23,7 @@ headerEl.append(titleEl);
 var containerEl =$('#container')
 var startbtnEl = $('#startGamebtn')
 startbtnEl.text("Click To Start The Game!")
-startbtnEl.css({'font-size': '35px', 'color': 'blue', 'background': 'lightblue'})
+startbtnEl.css({'font-size': '35px', 'color': 'blue', 'background': 'lightblue', 'border': 'dotted'})
 containerEl.append(startbtnEl);
 containerEl.css({'text-align': 'center'});
 
@@ -81,10 +81,21 @@ function endGame() {
     titleEl.hide();
     console.log('end game');
     clearInterval(timerId);
+    console.log(secondsLeft);
     initialsEl.show();
     submitScoreEl.show();
-
+    initialsEl.css({'margin-left': '400px'})
+    allDoneEl.text("your finale score is " + secondsLeft + "!")
+    allDoneEl.css({'margin-left': '425px', 'padding': '50px'})
+    submitScoreEl.on('click', function(){
+        var initials = $("input[type='text']").val();
+        localStorage.setItem('Initials', initials);
+        var score = $('secondsLeft').val();
+        localStorage.setItem('score', score);
+    
+    })
 }
+
     
 function showQuestion() {
     questionEl.text(questions[questionIndex].question);
@@ -131,12 +142,14 @@ function showQuestion() {
         }
     })
 
+var allDoneEl =$('#allDone')
 var finalScoreEl =$('#finalScore')
 var initialsEl =$('#initials')
 var submitScoreEl =$('#submitScore')
 finalScoreEl.hide();
 initialsEl.hide();
 submitScoreEl.hide();
+
 
 submitScoreEl.css({'color': 'blue', 'background': 'lightblue'})
 
