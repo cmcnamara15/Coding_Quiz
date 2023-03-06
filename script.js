@@ -8,7 +8,7 @@ var playerScore = 0;
 var questionIndex = 0;
 var choicesIndex = 0;
 var secondsLeft = 75;
-// var timerId = null;
+var timerId = null;
 
 var bodyEl =$('#body')
 bodyEl.css({'background': 'pink', 'margin': '50px'})
@@ -62,6 +62,8 @@ function checkQuestion(userChoice) {
     if(userChoice === questions[questionIndex].rightAnswer){
         console.log('right')
         correctEl.text('right')
+    }else if(userChoice === questionIndex[3]){
+
     
     }else{
         console.log('wrong')
@@ -71,6 +73,8 @@ function checkQuestion(userChoice) {
    
 };
 
+var h5El= $('h5')
+
 function endGame() {
     questionEl.hide();
     questionsEl.hide();
@@ -78,6 +82,7 @@ function endGame() {
     console.log('end game');
     clearInterval(timerId);
     console.log(secondsLeft);
+    h5El.hide();
     initialsEl.show();
     submitScoreEl.show();
     initialsEl.css({'margin-left': '400px'})
@@ -87,7 +92,7 @@ function endGame() {
         var initials = $("input[type='text']").val();
         localStorage.setItem('Initials', initials);
         var score = $('secondsLeft').val();
-        localStorage.setItem('score', score);
+        localStorage.setItem('score', JSON.stringify(score));
     
     })
 }
@@ -145,9 +150,9 @@ var submitScoreEl =$('#submitScore')
 finalScoreEl.hide();
 initialsEl.hide();
 submitScoreEl.hide();
-
-
 submitScoreEl.css({'color': 'blue', 'background': 'lightblue'})
+
+var highScorePage =$('#highScorePage')
 
 var highScoresEl =$('#highScores');
 highScoresEl.css({'align': 'right'});
@@ -155,6 +160,8 @@ highScoresEl.css({'font-size': '15px', 'color': 'blue', 'background': 'lightblue
 highScoresEl.on("click", function(){
     containerEl.hide()
     questionsEl.hide()
+
+
 })
 
 questionsEl.hide();
