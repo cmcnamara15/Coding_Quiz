@@ -8,7 +8,7 @@ var playerScore = 0;
 var questionIndex = 0;
 var choicesIndex = 0;
 var secondsLeft = 75;
-var timerId = null;
+// var timerId = null;
 
 var bodyEl =$('#body')
 bodyEl.css({'background': 'pink', 'margin': '50px'})
@@ -61,17 +61,13 @@ function checkQuestion(userChoice) {
 
     if(userChoice === questions[questionIndex].rightAnswer){
         console.log('right')
-        playerScore = playerScore + 25;
         correctEl.text('right')
-        playerScore += 25
     
     }else{
         console.log('wrong')
-        playerScore = playerScore + 0;
         correctEl.text('wrong')
         secondsLeft -= 15
     }
-    console.log(playerScore)
    
 };
 
