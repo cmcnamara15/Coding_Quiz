@@ -8,6 +8,7 @@ var playerScore = 0;
 var questionIndex = 0;
 var choicesIndex = 0;
 var secondsLeft = 75;
+var tickerId = null;
 
 var bodyEl =$('#body')
 bodyEl.css({'background': 'pink', 'margin': '50px'})
@@ -74,6 +75,16 @@ function checkQuestion(userChoice) {
    
 };
 
+function endGame() {
+    questionEl.hide();
+    questionsEl.hide();
+    titleEl.hide();
+    console.log('end game');
+    clearInterval(timerId);
+    initialsEl.show();
+    submitScoreEl.show();
+
+}
     
 function showQuestion() {
     questionEl.text(questions[questionIndex].question);
@@ -85,29 +96,47 @@ function showQuestion() {
     choice1El.on("click", function(){
         checkQuestion(0);
         questionIndex++;
-        showQuestion();
+        if(questionIndex < questions.length){
+            showQuestion();
+        }else{
+            endGame();
+        }
 
     });
     choice2El.on("click", function(){
         checkQuestion(1);
         questionIndex++;
+        if(questionIndex < questions.length){
         showQuestion();
+        }else{
+            endGame();
+        }
     });
     choice3El.on("click", function(){
         checkQuestion(2);
         questionIndex++;
+        if(questionIndex < questions.length){
         showQuestion();
+        }else{
+            endGame();
+        }
     });
     choice4El.on("click", function(){
         checkQuestion(3);
         questionIndex++;
+        if(questionIndex < questions.length){
         showQuestion();
-
+        }else{
+            endGame();
+        }
     })
 
 var finalScoreEl =$('#finalScore')
-var enterInitialsEl =$('#enterInitials')
+var initialsEl =$('#initials')
 var submitScoreEl =$('#submitScore')
+finalScoreEl.hide();
+initialsEl.hide();
+submitScoreEl.hide();
 
 submitScoreEl.css({'color': 'blue', 'background': 'lightblue'})
 
@@ -130,11 +159,11 @@ function setTime() {
         secondsLeft--;
         timerEl.textContent = secondsLeft + " seconds remaining!";
         console.log(secondsLeft);
-        //  WRITE CODE TO DECREMENT TIME IF USER CHOOSES WRONG QUESTION
         if(secondsLeft === 0) {
             clearInterval(timerInterval);
         }
     }, 1000);
+    return timerInterval
  }
 
  
@@ -155,7 +184,7 @@ var choicesEl=$('#choices');
     choice3El.css({'margin': '5px'});
     choice4El.css({'margin': '5px'}),
     showQuestion();
-    setTime();
+    timerId = setTime();
     // console.log(secondsLeft);
     // setTimeout(function(){
     //  alert('Time is up!');
