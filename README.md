@@ -47,4 +47,6 @@ A sequential list of photos which shows the functionality of the page
 
 ![End Game screenshot](Assets/images/screenshot4.png)
 
-![High scores](Assets/images/screenshot5.png)
+![High scores](Assets/images/screenshot5.png)/
+
+![Local Storage](Assets/images/screenshot6.png)
