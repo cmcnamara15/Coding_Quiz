@@ -36,19 +36,19 @@ containerEl.css({'text-align': 'center'});
 // Using a object model I created the logic for the questions.
 var questions =[{
     question: "What data type returns a value of true/false?", 
-    choices: ["string", "boolean", "number", "object"],
+    choices: ["String", "Boolean", "Number", "Object"],
     rightAnswer: 1,
 }, {
-    question: "A  variable name cannot start with a?",
-    choices: ["dollar sign", "capital letter", "number", "dash"],
+    question: "A  variable name cannot start with a ____.",
+    choices: ["Dollar Sign", "Capital Letter", "Number", "Dash"],
     rightAnswer: 2,
 }, {
-    question: "Whenever a method requires some information to work, the data is given inside the parentheses is called",
-    choices: ["objects", "method operators", "data types", "parameters"],
+    question: "When a method requires some information to work, the data given inside the parentheses is called ____.",
+    choices: ["Objects", "Method Operators", "Data Types", "Parameters"],
     rightAnswer: 3,
 }, {
     question: "Which of the following is not included in the family of data types?",
-    choices: ["variable", "numeric", "boolean", "string"],
+    choices: ["Variable", "Numeric", "Boolean", "String"],
     rightAnswer: 0,
 }];
 
