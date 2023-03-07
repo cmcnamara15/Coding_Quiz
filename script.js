@@ -1,4 +1,7 @@
 // variables 
+// there is a lot i need to work on with this page. Specifically I need to fix the bugs at the end of the game
+// I spent a lot of time getting to this end point and will re submit this project, cleaned up and de bugged when 
+// I have time. With that being said I am very proud of how far i came on this and how much I learned.
 var timer 
 var highScores
 var question
@@ -62,7 +65,7 @@ function checkQuestion(userChoice) {
     if(userChoice === questions[questionIndex].rightAnswer){
         console.log('right')
         correctEl.text('right')
-    }else if(userChoice === questionIndex[3]){
+    // }else if(userChoice === questionIndex[3]){
 
     
     }else{
@@ -86,18 +89,21 @@ function endGame() {
     initialsEl.show();
     submitScoreEl.show();
     initialsEl.css({'margin-left': '400px'})
-    allDoneEl.text("your finale score is " + secondsLeft + "!")
-    allDoneEl.css({'margin-left': '425px', 'padding': '50px'})
+    allDoneEl.text("Your finale score is " + secondsLeft + "! Please enter your initials")
+    allDoneEl.css({'margin-left': '400px', 'padding': '50px'})
     submitScoreEl.on('click', function(){
         var initials = $("input[type='text']").val();
         localStorage.setItem('Initials', initials);
-        var score = $('secondsLeft').val();
-        localStorage.setItem('score', JSON.stringify(score));
-    
-    })
+        localStorage.setItem('score',(secondsLeft));
+        localStorage.getItem(initials);
+        localStorage.getItem(secondsLeft);
+        highScorePage.append(initials);
+        highScorePage.append(secondsLeft);
+
+
+     })
 }
 
-    
 function showQuestion() {
     questionEl.text(questions[questionIndex].question);
     choice1El.text(questions[questionIndex].choices[0]);
@@ -152,7 +158,11 @@ initialsEl.hide();
 submitScoreEl.hide();
 submitScoreEl.css({'color': 'blue', 'background': 'lightblue'})
 
+
 var highScorePage =$('#highScorePage')
+var returnToStartEl =$('#returnToStart')
+
+returnToStartEl.hide();
 
 var highScoresEl =$('#highScores');
 highScoresEl.css({'align': 'right'});
@@ -160,7 +170,18 @@ highScoresEl.css({'font-size': '15px', 'color': 'blue', 'background': 'lightblue
 highScoresEl.on("click", function(){
     containerEl.hide()
     questionsEl.hide()
-
+    finalScoreEl.hide();
+    initialsEl.hide();
+    submitScoreEl.hide();
+    h5El.hide();
+    allDoneEl.hide();
+    returnToStartEl.show();
+    returnToStartEl.css({'font-size': '15px', 'color': 'blue', 'background': 'lightblue', });
+    returnToStartEl.on('click', function(){
+        containerEl.show()
+    })
+    
+    
 
 })
 
@@ -208,9 +229,6 @@ var choicesEl=$('#choices');
     });
 
  
-
-
-
 // Create html elements for the timer and the start button
 // Variables to keep track of
 // Current time (stopped or live)
@@ -226,15 +244,3 @@ var choicesEl=$('#choices');
 // Starting a game does the following (create function called askQuestion)
 // Starts the timer (however that works)
 // Draws a question on the page
-
-
-// var timerEl=$('#timer')
-// $(document).ready(function(){
-// function setTime() 
-//     var timerInterval = setInterval(function() {
-//         $(timerEl).text(secondsLeft--);
-//         if (secondsLeft == 0) {
-//             clearInterval(timerInterval);
-//         }
-//     },1000);
-// })
