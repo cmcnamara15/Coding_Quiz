@@ -13,6 +13,7 @@ var choicesIndex = 0;
 var secondsLeft = 75;
 var timerId = null;
 
+// Using JQuery I added style and created elements on the page
 var bodyEl =$('#body')
 bodyEl.css({'background': 'pink', 'margin': '50px'})
 var headerEl =$('#header');
@@ -23,6 +24,7 @@ titleEl.addClass('p-2');
 titleEl.css({'text-align': 'center', 'border': 'dotted'});
 headerEl.append(titleEl);
 
+
 var containerEl =$('#container')
 var startbtnEl = $('#startGamebtn')
 startbtnEl.text("Click To Start The Game!")
@@ -31,7 +33,7 @@ containerEl.append(startbtnEl);
 containerEl.css({'text-align': 'center'});
 
 
-
+// Using a object model I created the logic for the questions.
 var questions =[{
     question: "What data type returns a value of true/false?", 
     choices: ["string", "boolean", "number", "object"],
@@ -50,6 +52,7 @@ var questions =[{
     rightAnswer: 0,
 }];
 
+// Used JQuery to select elements on my HTML page 
 var questionsEl =$('#questions');
 var questionEl =$('#questionTitle');
 var choice1El =$('#choice1');
@@ -59,18 +62,17 @@ var choice4El =$('#choice4');
 
 var correctEl =$('#correct')
 
+// This is the function that checks to make sure the user chooses the right question
 function checkQuestion(userChoice) {
-
-
     if(userChoice === questions[questionIndex].rightAnswer){
-        console.log('right')
-        correctEl.text('right')
+        console.log('Right!')
+        correctEl.text('Right!')
     // }else if(userChoice === questionIndex[3]){
 
     
     }else{
-        console.log('wrong')
-        correctEl.text('wrong')
+        console.log('Wrong!')
+        correctEl.text('Wrong!')
         secondsLeft -= 15
     }
    
@@ -78,6 +80,7 @@ function checkQuestion(userChoice) {
 
 var h5El= $('h5')
 
+// The function I used to eng the game and exit the questions element.
 function endGame() {
     questionEl.hide();
     questionsEl.hide();
@@ -92,6 +95,7 @@ function endGame() {
     allDoneEl.text("Your finale score is " + secondsLeft + "! Please enter your initials")
     allDoneEl.css({'margin-left': '400px', 'padding': '50px'})
     submitScoreEl.on('click', function(){
+        // Logging the information to local storage 
         var initials = $("input[type='text']").val();
         localStorage.setItem('Initials', initials);
         localStorage.setItem('score',(secondsLeft));
@@ -104,6 +108,7 @@ function endGame() {
      })
 }
 
+// The function I wrote to show the questions and using event listeners move through each question after the user picks a choice.
 function showQuestion() {
     questionEl.text(questions[questionIndex].question);
     choice1El.text(questions[questionIndex].choices[0]);
@@ -164,6 +169,8 @@ var returnToStartEl =$('#returnToStart')
 
 returnToStartEl.hide();
 
+
+// Still in work, this is the element selection and events set up to generate the code used to show the high scores 
 var highScoresEl =$('#highScores');
 highScoresEl.css({'align': 'right'});
 highScoresEl.css({'font-size': '15px', 'color': 'blue', 'background': 'lightblue', })
@@ -180,9 +187,6 @@ highScoresEl.on("click", function(){
     returnToStartEl.on('click', function(){
         containerEl.show()
     })
-    
-    
-
 })
 
 questionsEl.hide();
@@ -190,7 +194,8 @@ var timerEl = document.querySelector("#timer");
 //  console.log(timerEl)
 // ^ concole.logged to make sure timer was working
 
- 
+
+// The time function to count down the games clock.
 function setTime() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
@@ -208,6 +213,8 @@ var choicesEl=$('#choices');
 // var answersEl =$("#answerButtons");
 // answersEl.hide();
 
+
+// The event listener used to start the game once the start game button is clicked.
  startbtnEl.on("click", function(){
     containerEl.hide();
     questionsEl.show();
