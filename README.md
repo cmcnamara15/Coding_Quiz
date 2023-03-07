@@ -4,6 +4,10 @@
 
 This project was a great exercise in JavaScript! As a developer my goal was to better understand how to use JavaScript as a vessel to create something that resembled the mock up given. This wasn't designed for style as much as it was designed for functionality. Upon first submission I still have quite a few things to work out in regards to the end of the game. All in all though I am excited to share this project as a milestone along my journey of becoming a software engineer.
 
+## Deployed URL
+
+https://cmcnamara15.github.io/Coding_Quiz/
+
 ### Your Task
 
 At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges.
