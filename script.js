@@ -216,6 +216,7 @@ var choicesEl=$('#choices');
 
 // The event listener used to start the game once the start game button is clicked.
  startbtnEl.on("click", function(){
+    questionIndex = 0;
     containerEl.hide();
     questionsEl.show();
     questionEl.css({'text-align': 'center'});
