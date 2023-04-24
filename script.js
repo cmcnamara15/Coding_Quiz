@@ -75,7 +75,6 @@ function checkQuestion(userChoice) {
         correctEl.text('Wrong!')
         secondsLeft -= 15
     }
-   
 };
 
 var h5El= $('h5')
@@ -105,7 +104,7 @@ function endGame() {
         highScorePage.append(secondsLeft);
 
 
-     })
+    })
 }
 
 // The function I wrote to show the questions and using event listeners move through each question after the user picks a choice.
@@ -206,16 +205,13 @@ function setTime() {
         }
     }, 1000);
     return timerInterval
- }
+}
 
- 
 var choicesEl=$('#choices');
-// var answersEl =$("#answerButtons");
-// answersEl.hide();
 
 
 // The event listener used to start the game once the start game button is clicked.
- startbtnEl.on("click", function(){
+startbtnEl.on("click", function(){
     questionIndex = 0;
     containerEl.hide();
     questionsEl.show();
@@ -236,7 +232,7 @@ var choicesEl=$('#choices');
     // }, 75000); 
     });
 
- 
+
 // Create html elements for the timer and the start button
 // Variables to keep track of
 // Current time (stopped or live)
