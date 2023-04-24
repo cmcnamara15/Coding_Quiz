@@ -1,11 +1,7 @@
-// variables 
-// there is a lot i need to work on with this page. Specifically I need to fix the bugs at the end of the game
-// I spent a lot of time getting to this end point and will re submit this project, cleaned up and de bugged when 
-// I have time. With that being said I am very proud of how far i came on this and how much I learned.
-var timer 
+/*var timer 
 var highScores
 var question
-var playerName
+var playerName*/
 
 var playerScore = 0;
 var questionIndex = 0;
@@ -190,8 +186,8 @@ highScoresEl.on("click", function(){
 
 questionsEl.hide();
 var timerEl = document.querySelector("#timer");
-//  console.log(timerEl)
-// ^ concole.logged to make sure timer was working
+/* console.log(timerEl)
+^ console.logged to make sure timer was working*/
 
 
 // The time function to count down the games clock.
@@ -225,26 +221,26 @@ startbtnEl.on("click", function(){
     choice3El.css({'margin': '5px'});
     choice4El.css({'margin': '5px'}),
     showQuestion();
-    timerId = setTime();
-    // console.log(secondsLeft);
-    // setTimeout(function(){
-    //  alert('Time is up!');
-    // }, 75000); 
+    /* timerId = setTime();
+    console.log(secondsLeft);
+    setTimeout(function(){
+    alert('Time is up!');
+    }, 75000); */
     });
 
 
-// Create html elements for the timer and the start button
-// Variables to keep track of
-// Current time (stopped or live)
-// High Scores
-// Name
-// Score (number)
-// Questions (array)
-// Each Question (dictionary)
-// Question text (string)
-// Answers [String array]
-// Correct answer number (represents correct answer in the array)
-// Bind event to starts game
-// Starting a game does the following (create function called askQuestion)
-// Starts the timer (however that works)
-// Draws a question on the page
+/* Create html elements for the timer and the start button
+Variables to keep track of
+Current time (stopped or live)
+High Scores
+Name
+Score (number)
+Questions (array)
+Each Question (dictionary)
+Question text (string)
+Answers [String array]
+Correct answer number (represents correct answer in the array)
+Bind event to starts game
+Starting a game does the following (create function called askQuestion)
+Starts the timer (however that works)
+Draws a question on the page */
