@@ -244,3 +244,4 @@ Bind event to starts game
 Starting a game does the following (create function called askQuestion)
 Starts the timer (however that works)
 Draws a question on the page */
+// adding comments for git testing
